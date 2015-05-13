@@ -1,0 +1,33 @@
+<h1> <%=@recipe.title()%> </h1>
+
+<h3> Please enter your directions here: </h3>
+
+
+<TEXTAREA Name="Directions" ROWS=20 COLS=60></TEXTAREA>
+
+<h1> Add ingredients here: </h1>
+
+<% if @ingredients.any?() %>
+  <form action="/add_ingredient/" method="post">
+    <input type="hidden" name="_method" value="patch">
+
+    <% @ingredients.each() do |ingredient| %>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="ingredient_id[]" value="<%= ingredient.id() %>"><%= ingredient.name() %>
+        </label>
+      </div>
+      <% end %>
+
+      <button type="submit">Add ingredients</button>
+<%else%>
+    <p> There are no ingredients! </p>
+
+    </form>
+
+    <a href='/add_ingredients/'> Add ingredients </a>
+
+    <% end %>
+<p><br>
+<a href='/'> Home </a>
+</p></br>
