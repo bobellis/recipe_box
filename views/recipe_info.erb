@@ -1,1 +1,22 @@
+<h1> <%=@recipe.title()%> </h1>
 
+<TEXTAREA Name="Directions" ROWS=20 COLS=60></TEXTAREA>
+
+<h1>Ingredients: </h1>
+
+<% if @ingredients.any?() %>
+<% @ingredients.each() do |ingredient| %>
+<ul>
+  <li><%=ingredient.name()%></li>
+</ul>
+  <%end%>
+<%else%>
+  <p> There are no ingredients! </p>
+<%end%>
+
+</form>
+
+<form action='/recipe/<%=@recipe.id%>' method='post'>
+  <input name='_method' type='hidden' value='delete'>
+  <button type='submit' class="btn btn-danger">Delete Recipe</button>
+</form>
