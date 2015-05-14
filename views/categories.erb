@@ -1,0 +1,20 @@
+<h1> Categories </h1>
+
+<h3>Here are your categories</h3>
+<% if @categories.any?() %>
+<% @categories.each() do |category| %>
+<ul>
+  <li><%=category.group()%></a></li>
+</ul>
+  <%end%>
+<%else%>
+  <p>categoryless</p>
+  <%end%>
+
+  <form action='/category_save/' method='post'>
+  <label for='category_group'> Add Category: </label>
+  <input id='caegory_group' name='category_group' type='text'>
+  <button type='submit' class='btn btn-success'> Add Category </button>
+</form>
+
+<a href='/'> Go home! </a>

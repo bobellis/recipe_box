@@ -1,0 +1,56 @@
+<h1> <%=@recipe.title()%> </h1>
+
+<h3> Please enter your instructions here: </h3>
+
+<form action='/save_recipe/<%=@id%>' method='post'>
+<input type="hidden" name="_method" value="patch">
+
+<TEXTAREA Name="instructions" ROWS=20 COLS=60> </TEXTAREA>
+
+<h1> Add Ingredients here: </h1>
+
+<% if @ingredients.any?() %>
+
+    <% @ingredients.each() do |ingredient| %>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="ingredient_ids[]" value="<%= ingredient.id() %>"><%= ingredient.name() %></input>
+        </label>
+      </div>
+      <% end %>
+
+
+<%else%>
+    <p> There are no ingredients! </p>
+
+    </form>
+
+    <a href='/add_ingredients/'> Add ingredients </a>
+
+    <% end %>
+
+
+    <h1>Add Categories here:</h1>
+<% if @categories.any?() %>
+
+    <% @categories.each() do |category| %>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="category_ids[]" value="<%= category.id() %>"><%= category.group() %></input>
+        </label>
+      </div>
+      <% end %>
+<%else%>
+    <p> There are no categories </p>
+
+    </form>
+
+    <a href='/add_categories/'> Add categories </a>
+
+    <% end %>
+
+    <button type="submit">Save Recipe</button>
+
+    <p><br>
+    <a href='/'> Home </a>
+    </p></br>
