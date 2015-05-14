@@ -17,6 +17,14 @@ post('/recipe_edit/') do
   erb(:recipe_edit)
 end
 
+get('/recipe_edit/:id') do
+  @recipe = Recipe.find(params.fetch('id'))
+  @ingredients = Ingredient.all()
+  @instructions = @recipe.instructions()
+  @categories = Category.all()
+  erb(:recipe_edit)
+end
+
 get('/recipe/:id') do
   @id = params.fetch('id')
   @recipe = Recipe.find(@id)
